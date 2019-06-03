@@ -1,9 +1,9 @@
 package me.arkadzi.threader.model
 
 interface QueueElement {
-    var parent: QueueElement?
-    var layer: Int
+    val parent: QueueElement?
+    val layer: Int
 
-    fun getStates(): List<QueueElement>
+    fun getStates(): List<Page>
     fun process()
 }

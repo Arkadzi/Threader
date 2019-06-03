@@ -1,49 +1,39 @@
 package me.arkadzi.threader.model
 
-import android.support.annotation.WorkerThread
-
-class Page(
-        val url: String,
-        val pageProcessor: PageProcessor,
-        val query: String
-) : QueueElement {
+class Page(val url: String, val pageProcessor: PageProcessor, val query: String, _parent: Page?) : QueueElement {
+    override val parent = _parent
+    override val layer: Int = (_parent?.layer ?: 0) + 1
     var status: Status = Status.PENDING
-    var error: Exception? = null
     val urls = mutableListOf<String>()
-    override var layer: Int = 1
-    override var parent: QueueElement?
-        get() = _parent
-        set(value) {
-            _parent = value
-            layer = value?.layer ?: 0 + 1
-        }
-    var text: String? = null
-    var _parent: QueueElement? = null
+    //    var text: String? = null
     var analyzeTime: Long = 0
 
-    @WorkerThread
     override fun process() {
         val startTime = System.currentTimeMillis()
         try {
             status = Status.RUNNING
-            text = pageProcessor.getPageContent(url)
-            val matches = urlRegex.findAll(text!!)
-            status = if (text!!.contains(query, ignoreCase = true)) {
+//            println("handle 1 $url")
+            val text = pageProcessor.getPageContent(url)
+//            println("handle 2 $url")
+
+            val matches = urlRegex.findAll(text)
+            status = if (text.contains(query, ignoreCase = true)) {
                 Status.SUCCESS
             } else {
                 Status.NOT_FOUND
             }
+
             urls.clear()
             urls.addAll(matches.map { matcher -> matcher.groupValues[0] }.distinct())
+
         } catch (e: Exception) {
             status = Status.FAILURE
-            error = e
         }
         analyzeTime = System.currentTimeMillis() - startTime
     }
 
-    override fun getStates(): List<QueueElement> {
-        return urls.map { Page(it, pageProcessor, query) }
+    override fun getStates(): List<Page> {
+        return urls.map { Page(it, pageProcessor, query, this) }
     }
 
     override fun equals(other: Any?): Boolean {
@@ -62,7 +52,8 @@ class Page(
     }
 
     companion object {
-        val urlRegex = Regex("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
+        val urlRegex =
+            Regex("https?:\\/\\/(www\\.)?[-a-zA-Z0-9@:%._\\+~#=]{2,256}\\.[a-z]{2,6}\\b([-a-zA-Z0-9@:%_\\+.~#?&//=]*)")
     }
 }
 

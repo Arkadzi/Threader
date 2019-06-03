@@ -24,10 +24,11 @@ class Adapter(
     }
 
     fun updateData(data: List<Page>) {
-        val productDiffUtilCallback = PageDiffUtilCallback(this.data, data)
-        val productDiffResult = DiffUtil.calculateDiff(productDiffUtilCallback)
+//        val productDiffUtilCallback = PageDiffUtilCallback(this.data, data)
+//        val productDiffResult = DiffUtil.calculateDiff(productDiffUtilCallback)
         this.data = data
-        productDiffResult.dispatchUpdatesTo(this)
+        notifyDataSetChanged()
+//        productDiffResult.dispatchUpdatesTo(this)
     }
 }
 
