@@ -1,10 +1,9 @@
-package me.arkadzi.threader.adapter
+package me.arkadzi.threader.presentation.adapter
 
-import android.support.v7.util.DiffUtil
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import me.arkadzi.threader.model.Page
+import me.arkadzi.threader.domain.model.Page
 
 class Adapter(
         val layoutInflater: LayoutInflater

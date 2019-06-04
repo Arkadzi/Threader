@@ -1,7 +1,7 @@
-package me.arkadzi.threader.adapter
+package me.arkadzi.threader.presentation.adapter
 
 import android.support.v7.util.DiffUtil
-import me.arkadzi.threader.model.Page
+import me.arkadzi.threader.domain.model.Page
 
 class PageDiffUtilCallback(
         private val oldList: List<Page>,

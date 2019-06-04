@@ -2,4 +2,8 @@
     <string name="app_name">Threader</string>
     <string name="title_item_list">Items</string>
     <string name="title_item_detail">Item Detail</string>
+    <string name="max_load">pages to load: %d</string>
+    <string name="max_threads">threads to use: %d</string>
+    <string name="err_wrong_url_format">Wrong url format</string>
+    <string name="err_empty_query">Empty query</string>
 </resources>

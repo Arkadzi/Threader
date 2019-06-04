@@ -4,7 +4,69 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".presentation.features.main.MainActivity">
+
+    <ProgressBar
+        android:id="@+id/pbAnalyze"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:indeterminate="false"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvThreadsHint"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/sbThread"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sbThread" />
+
+    <SeekBar
+        android:id="@+id/sbThread"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/sbMaxLoad"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvThreadsHint" />
+
+    <TextView
+        android:id="@+id/tvMaxLoadHint"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/sbMaxLoad"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/sbMaxLoad" />
+
+    <SeekBar
+        android:id="@+id/sbMaxLoad"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/etUrl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvThreadsHint" />
+
+    <EditText
+        android:id="@+id/etUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="https://bbc.com.ua"
+        android:hint="http(s)://"
+        android:inputType="textUri"
+        app:layout_constraintBottom_toTopOf="@+id/etQuery" />
+
+
+    <EditText
+        android:id="@+id/etQuery"
+        android:layout_width="match_parent"
+        android:text="ukraine"
+        android:layout_height="wrap_content"
+        android:hint="query"
+        app:layout_constraintBottom_toTopOf="@+id/btStart" />
 
     <Button
         android:id="@+id/btStart"
@@ -28,7 +90,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/btStart"
-        app:layout_constraintTop_toTopOf="parent"></android.support.v7.widget.RecyclerView>
+        app:layout_constraintBottom_toTopOf="@+id/sbThread"
+        app:layout_constraintTop_toBottomOf="@id/pbAnalyze"/>
 
 </android.support.constraint.ConstraintLayout>

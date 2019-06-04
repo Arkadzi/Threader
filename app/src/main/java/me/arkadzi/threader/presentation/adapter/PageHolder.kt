@@ -1,11 +1,12 @@
-package me.arkadzi.threader.adapter
+package me.arkadzi.threader.presentation.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import me.arkadzi.threader.R
-import me.arkadzi.threader.model.Page
+import me.arkadzi.threader.domain.model.Page
+import me.arkadzi.threader.domain.model.Status
 
 class PageHolder(
         layoutInflater: LayoutInflater,
@@ -20,6 +21,12 @@ class PageHolder(
     }
     fun bind(page: Page) {
         tvUrl.text = page.url
-        tvStatus.text = page.status.toString()
+        tvStatus.text = page.getStatusText()
+    }
+
+    private fun Page.getStatusText() = if (status == Status.FAILURE) {
+        "$status $error"
+    } else {
+        status.toString()
     }
 }
