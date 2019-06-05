@@ -12,10 +12,6 @@ class OkPageLoader : PageLoader {
         .followRedirects(false)
         .build()
 
-//    http://imyerevan.com/pdf/en/2006-best.pdf
-//    https://kclpure.kcl.ac.uk/portal/files/106425259/2019_Mowlem_Florence_1414261_ethesis.pdf
-    //        https://production.bbc.co.uk/isite2/contentreader/xml/result
-
     override fun loadPage(url: String): String {
         val request = Request.Builder()
             .url(url)

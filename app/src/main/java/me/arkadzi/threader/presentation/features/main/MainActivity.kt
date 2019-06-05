@@ -48,7 +48,6 @@ class MainActivity : AppCompatActivity(), IMainView {
     }
 
     override fun updateList(data: List<Page>) {
-        Log.e("asd", "data")
         adapter.updateData(data)
     }
 

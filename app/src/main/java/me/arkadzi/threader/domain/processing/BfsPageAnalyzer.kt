@@ -133,8 +133,7 @@ class BfsPageAnalyzer(val pageLoader : PageLoader) {
     private fun generateCallable(queueElement: Page): Callable<Page> {
         return Callable {
             queueElement.process(pageLoader)
-            queueElement
-            println("f " + queueElement.layer + " " + queueElement.analyzeTime + " " + queueElement.url)
+//            println("f " + queueElement.layer + " " + queueElement.analyzeTime + " " + queueElement.url)
             queueElement
         }
     }
