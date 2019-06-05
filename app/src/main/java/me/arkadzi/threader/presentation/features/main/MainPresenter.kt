@@ -41,7 +41,7 @@ class MainPresenter(
             onNextData(BfsPageAnalyzer.Data(emptyList(), 1))
             analyzer.startAnalyzing(
                     BfsPageAnalyzer.AnalyzeParameters(
-                            Page(url, query),
+                            Page(url, trimmedQuery),
                             urlsToAnalyzeCount,
                             threadsCount
                     )
