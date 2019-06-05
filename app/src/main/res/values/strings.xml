@@ -6,4 +6,8 @@
     <string name="max_threads">threads to use: %d</string>
     <string name="err_wrong_url_format">Wrong url format</string>
     <string name="err_empty_query">Empty query</string>
+    <string name="hint_query">query</string>
+    <string name="btn_start">start</string>
+    <string name="btn_stop">stop</string>
+    <string name="hint_address">http(s)://</string>
 </resources>
